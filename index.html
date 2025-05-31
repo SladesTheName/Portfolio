@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Replace Tailwind CDN with pre-compiled Tailwind CSS -->
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>Christian Brooks Portfolio</title>
+  <style>
+    body {
+      font-family: 'Montserrat', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #192310 0%, #2f4912 100%);
+      color: #e9edd9;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .navbar {
+      background: rgba(74, 94, 77, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .hero {
+      position: relative;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #192310;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(139, 90, 43, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+    .section {
+      padding: 3rem 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.8s ease forwards;
+    }
+    .section:nth-child(2) { animation-delay: 0.2s; }
+    .section:nth-child(3) { animation-delay: 0.4s; }
+    .section:nth-child(4) { animation-delay: 0.6s; }
+    .project-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+      border: 1px solid #5e9130;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(139, 90, 43, 0.5);
+      background: rgba(139, 90, 43, 0.2);
+    }
+    .hero-img {
+      border-radius: 50%;
+      border: 4px solid #8B5A2B;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 15px #8B5A2B;
+    }
+    .filter-btn {
+      background: rgba(98, 106, 88, 0.7);
+      backdrop-filter: blur(5px);
+      color: #ffffff;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: #2f7807;
+      transform: scale(1.1);
+      box-shadow: 0 0 10px #2f7807;
+    }
+    input, textarea {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid #b7c78f;
+      border-radius: 8px;
+      color: #e9edd9;
+      backdrop-filter: blur(5px);
+    }
+    button {
+      background: #2f7807;
+      border-radius: 20px;
+      padding: 0.75rem 1.5rem;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #1e6209;
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #1e6209;
+    }
+    footer {
+      background: rgba(74, 94, 77, 0.5);
+      backdrop-filter: blur(10px);
+    }
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    .hidden {
+      display: none;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+    .typewriter-text {
+      overflow: hidden;
+      border-right: 0.15em solid #8B5A2B;
+      white-space: nowrap;
+      margin: 0 auto;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+  <!-- Navigation -->
+  <nav class="navbar p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <h1 class="text-xl font-bold text-8B5A2B">Christian Brooks</h1>
+      <div class="space-x-4">
+        <a href="#home" class="hover:text-8B5A2B transition-colors">Home</a>
+        <a href="#about" class="hover:text-8B5A2B transition-colors">About</a>
+        <a href="#projects" class="hover:text-8B5A2B transition-colors">Projects</a>
+        <a href="#contact" class="hover:text-8B5A2B transition-colors">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <div class="container mx-auto max-w-3xl relative z-10">
+      <img src="your-headshot-url.jpg" alt="Christian Brooks" class="hero-img mx-auto mb-6">
+      <div class="typewriter-text" id="typewriter"></div>
+      <p class="text-lg mb-6">Future AI Engineer | Army Officer transitioning to AI Systems | Expert in NLP, LLMs, and AI Workflows.</p>
+      <a href="#projects" class="bg-2f7807 text-white px-6 py-2 rounded-md hover:bg-1e6209">Explore My Work</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="container mx-auto max-w-2xl">
+      <h2 class="text-2xl font-bold text-center mb-6 text-5e9130">About Me</h2>
+      <div class="text-center">
+        <p class="mb-4">I'm Christian Brooks, a dedicated Army Officer transitioning into a Future AI Engineer. With experience leading $20M operations, I bring Agile and mission-focused execution to AI development. My expertise lies in Natural Language Processing (NLP), Large Language Models (LLMs), and designing efficient AI workflows.</p>
+        <p>My goal is to leverage my military leadership and technical skills to innovate AI solutions that drive impactful outcomes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container mx-auto max-w-2xl">
+      <h2 class="text-2xl font-bold text-center mb-6 text-5e9130">My Projects</h2>
+      <div class="flex justify-center mb-6">
+        <button class="filter-btn" onclick="filterProjects('all')">All</button>
+        <button class="filter-btn" onclick="filterProjects('nlp')">NLP</button>
+        <button class="filter-btn" onclick="filterProjects('llm')">LLM</button>
+      </div>
+      <div id="project-list">
+        <div class="project-card p-4 rounded-md" data-category="nlp">
+          <h3 class="text-lg font-semibold mb-2">NLP Chatbot</h3>
+          <p class="mb-4">Developed a conversational AI using NLP for real-time customer support.</p>
+          <a href="#" class="text-8B5A2B hover:underline">View Project</a>
+        </div>
+        <div class="project-card p-4 rounded-md" data-category="llm">
+          <h3 class="text-lg font-semibold mb-2">LLM Optimization</h3>
+          <p class="mb-4">Optimized a large language model for military operational efficiency.</p>
+          <a href="#" class="text-8B5A2B hover:underline">View Project</a>
+        </div>
+        <div class="project-card p-4 rounded-md" data-category="nlp">
+          <h3 class="text-lg font-semibold mb-2">Sentiment Analysis Tool</h3>
+          <p class="mb-4">Built an NLP tool to analyze sentiment in operational reports.</p>
+          <a href="#" class="text-8B5A2B hover:underline">View Project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container mx-auto max-w-md">
+      <h2 class="text-2xl font-bold text-center mb-6 text-5e9130">Contact Me</h2>
+      <div class="space-y-4">
+        <input type="text" id="name" placeholder="Name" class="w-full p-2 border rounded">
+        <input type="email" id="email" placeholder="Email" class="w-full p-2 border rounded">
+        <textarea id="message" placeholder="Message" class="w-full p-2 border rounded" rows="4"></textarea>
+        <button onclick="submitForm()" class="bg-2f7807 text-white w-full p-2 rounded hover:bg-1e6209">Send Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="p-4 text-center">
+    <p>© 2025 Christian Brooks. All rights reserved.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 80, density: { enable: true, value_area: 800 } },
+        color: { value: '#8B5A2B' },
+        shape: { type: 'circle' },
+        opacity: { value: 0.5, random: true },
+        size: { value: 3, random: true },
+        line_linked: { enable: true, distance: 150, color: '#8B5A2B', opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 2, direction: 'none', random: true, straight: false }
+      },
+      interactivity: {
+        detect_on: 'canvas',
+        events: { onhover: { enable: true, mode: 'repulse' }, onclick: { enable: true, mode: 'push' } },
+        modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } }
+      }
+    });
+
+    function submitForm() {
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+      if (name && email && message) {
+        alert(`Thank you, ${name}! Your message has been sent. We'll get back to you at ${email} by 04:13 PM EDT on Saturday, May 31, 2025.`);
+        document.getElementById('name').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('message').value = '';
+      } else {
+        alert('Please fill in all fields.');
+      }
+    }
+
+    function filterProjects(category) {
+      const projects = document.querySelectorAll('#project-list .project-card');
+      const buttons = document.querySelectorAll('.filter-btn');
+      
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.filter-btn[onclick="filterProjects('${category}')"]`).classList.add('active');
+
+      projects.forEach(project => {
+        if (category === 'all' || project.getAttribute('data-category') === category) {
+          project.classList.remove('hidden');
+        } else {
+          project.classList.add('hidden');
+        }
+      });
+    }
+
+    window.onload = () => {
+      filterProjects('all');
+      const typewriter = document.getElementById('typewriter');
+      const titles = [
+        "Future AI Engineer",
+        "Army Officer → AI Innovator",
+        "NLP & LLM Expert"
+      ];
+      let titleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentTitle = titles[titleIndex];
+        if (isDeleting) {
+          typewriter.textContent = currentTitle.substring(0, charIndex--);
+          if (charIndex < 0) {
+            isDeleting = false;
+            titleIndex = (titleIndex + 1) % titles.length;
+            setTimeout(type, 500);
+            return;
+          }
+        } else {
+          typewriter.textContent = currentTitle.substring(0, charIndex++);
+          if (charIndex > currentTitle.length) {
+            isDeleting = true;
+            setTimeout(type, 2000);
+            return;
+          }
+        }
+        setTimeout(type, isDeleting ? 50 : 100);
+      }
+
+      type();
+    };
+  </script>
+</body>
+</html>
